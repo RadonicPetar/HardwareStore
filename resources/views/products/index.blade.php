@@ -11,6 +11,36 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
+            <div class="bg-white shadow-sm sm:rounded-lg mb-6">
+                <div class="p-6">
+                    <form method="GET" action="{{ route('products.index') }}" class="flex gap-4">
+
+                        <x-text-input name="search" type="text" class="w-full"
+                            placeholder="Search products here" :value="request('search')" />
+
+                        <select name="category" class="border-gray-300 rounded-md shadow-sm">
+                            <option value="">All categories</option>
+
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @selected(request('category') == $category->id)>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        <x-primary-button>Search</x-primary-button>
+
+                        @if (request('search') || request('category'))
+                            <a href="{{ route('products.index') }}"
+                                class="inline-flex items-center text-gray-600 hover:text-gray-900">
+                                Clear
+                            </a>
+                        @endif
+
+                    </form>
+                </div>
+            </div>
+
             @if (session('success'))
                 <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-md">
                     {{ session('success') }}

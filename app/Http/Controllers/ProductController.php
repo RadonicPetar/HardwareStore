@@ -9,11 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('category')->get();
+        $query = Product::with('category');
 
-        return view('products.index', compact('products'));
+        if($request->filled('search')){
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        if($request->filled('category')){
+            $query->where('category_id', $request->category);
+        }
+
+        $products = $query->get();
+        $categories = Category::all();
+
+        return view('products.index', compact('products', 'categories'));
     }
 
     public function create()

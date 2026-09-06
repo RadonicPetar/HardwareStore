@@ -37,5 +37,47 @@ class ProductSeeder extends Seeder
             'price' => 399.99,
             'image' => null,
         ]);
+
+        $products = [
+            ['category' => 'Processors', 'title' => 'AMD Ryzen 7 7800X3D', 'price' => 349.99],
+            ['category' => 'Processors', 'title' => 'AMD Ryzen 5 7600X', 'price' => 199.99],
+            ['category' => 'Processors', 'title' => 'Intel Core i5-14600K', 'price' => 289.99],
+
+            ['category' => 'Video Cards', 'title' => 'NVIDIA GeForce RTX 4070 Super', 'price' => 649.99],
+            ['category' => 'Video Cards', 'title' => 'AMD Radeon RX 7800 XT', 'price' => 529.99],
+            ['category' => 'Video Cards', 'title' => 'NVIDIA GeForce RTX 4060', 'price' => 329.99],
+
+            ['category' => 'Motherboards', 'title' => 'MSI B650 Gaming Plus WiFi', 'price' => 179.99],
+            ['category' => 'Motherboards', 'title' => 'ASUS TUF Gaming B650-Plus', 'price' => 189.99],
+            ['category' => 'Motherboards', 'title' => 'Gigabyte B760 Gaming X', 'price' => 159.99],
+
+            ['category' => 'Cases', 'title' => 'Corsair 4000D Airflow', 'price' => 94.99],
+            ['category' => 'Cases', 'title' => 'NZXT H5 Flow', 'price' => 89.99],
+            ['category' => 'Cases', 'title' => 'Fractal Design Pop Air', 'price' => 84.99],
+
+            ['category' => 'Power Supplies', 'title' => 'Corsair RM750e 750W', 'price' => 109.99],
+            ['category' => 'Power Supplies', 'title' => 'Seasonic Focus GX-850', 'price' => 139.99],
+            ['category' => 'Power Supplies', 'title' => 'be quiet! Pure Power 12 M 750W', 'price' => 119.99],
+
+            ['category' => 'RAM', 'title' => 'Corsair Vengeance 32GB DDR5', 'price' => 99.99],
+            ['category' => 'RAM', 'title' => 'Kingston Fury Beast 32GB DDR5', 'price' => 94.99],
+            ['category' => 'RAM', 'title' => 'G.Skill Flare X5 32GB DDR5', 'price' => 104.99],
+
+            ['category' => 'Storage', 'title' => 'Samsung 990 Pro 2TB', 'price' => 169.99],
+            ['category' => 'Storage', 'title' => 'WD Black SN850X 2TB', 'price' => 149.99],
+            ['category' => 'Storage', 'title' => 'Crucial P3 Plus 1TB', 'price' => 69.99],
+        ];
+
+        foreach ($products as $product) {
+            $category = Category::where('name', $product['category'])->first();
+
+            Product::create([
+                'category_id' => $category->id,
+                'title' => $product['title'],
+                'description' => null,
+                'price' => $product['price'],
+                'image' => null,
+            ]);
+        }
     }
 }
