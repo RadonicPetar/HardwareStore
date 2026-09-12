@@ -2,9 +2,11 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Products</h2>
+        @can('admin-access')
             <a href="{{ route('products.create') }}" class="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700">
                 Add Product
             </a>
+        @endcan
         </div>
     </x-slot>
 
@@ -68,7 +70,7 @@
 
                                     <p class="mt-2 font-semibold">€{{ number_format($product->price, 2) }}</p>
                                 </div>
-
+                            @can('admin-access')
                                 <div class="flex gap-3">
                                     <a href="{{ route('products.edit', $product) }}" class="text-blue-600 hover:underline">
                                         Edit
@@ -81,6 +83,7 @@
                                             onclick="return confirm('Delete this product?')">Delete</button>
                                     </form>
                                 </div>
+                            @endcan
                             </div>
                         </div>
                     @empty
