@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,3 +30,8 @@ Route::middleware(['auth', 'can:admin-access'])->group(function () {
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/{product}', [CartController::class, 'add'])->name('cart.add');
+Route::put('/cart/{product}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/{product}', [CartController::class, 'remove'])->name('cart.remove');

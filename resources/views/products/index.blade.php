@@ -69,6 +69,11 @@
                                     @endif
 
                                     <p class="mt-2 font-semibold">€{{ number_format($product->price, 2) }}</p>
+
+                                    <form method="POST" action="{{ route('cart.add', $product) }}" class="mt-3">
+                                        @csrf
+                                        <x-primary-button>Add to Cart</x-primary-button>
+                                    </form>
                                 </div>
                             @can('admin-access')
                                 <div class="flex gap-3">
