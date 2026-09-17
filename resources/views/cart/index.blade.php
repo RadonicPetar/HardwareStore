@@ -66,6 +66,10 @@
                                 Total: €{{ number_format($total, 2) }}
                             </p>
                         </div>
+                        <a href="{{ route('checkout.create') }}"
+                            class="inline-block mt-4 px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700">
+                            Checkout
+                        </a>
                     @endif
 
                 </div>
