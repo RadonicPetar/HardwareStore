@@ -27,6 +27,11 @@
                     <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                         {{ __('My Orders') }}
                     </x-nav-link>
+                    @can('admin-access')
+                    <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
+                        {{ __('Manage Orders') }}
+                    </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -88,6 +93,11 @@
             <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                 {{ __('My Orders') }}
             </x-responsive-nav-link>
+            @can('admin-access')
+            <x-nav-link :href="route('admin.orders.index')" :active="request()->routeIs('admin.orders.*')">
+                {{ __('Manage Orders') }}
+            </x-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->
