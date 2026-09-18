@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::middleware(['auth', 'can:admin-access'])->group(function () {
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');

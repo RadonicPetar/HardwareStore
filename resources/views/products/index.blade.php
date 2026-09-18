@@ -61,7 +61,11 @@
                                             alt="{{ $product->title }}" class="w-32 h-32 object-contain mb-3">
                                     @endif
 
-                                    <h3 class="text-lg font-semibold">{{ $product->title }}</h3>
+                                    <h3 class="text-lg font-semibold">
+                                        <a href="{{ route('products.show', $product) }}" class="hover:underline">
+                                            {{ $product->title }}
+                                        </a>
+                                    </h3>
                                     <p class="text-sm text-gray-500">{{ $product->category->name }}</p>
 
                                     @if ($product->description)
@@ -94,6 +98,11 @@
                     @empty
                         <p class="text-gray-500">No products found.</p>
                     @endforelse
+                    @if ($products->hasPages())
+                        <div class="mt-6">
+                            {{ $products->links() }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

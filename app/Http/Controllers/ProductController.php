@@ -21,7 +21,7 @@ class ProductController extends Controller
             $query->where('category_id', $request->category);
         }
 
-        $products = $query->get();
+        $products = $query->paginate(10)->withQueryString();
         $categories = Category::all();
 
         return view('products.index', compact('products', 'categories'));
@@ -92,5 +92,12 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+    }
+
+    public function show(Product $product)
+    {
+        $product->load('category');
+
+        return view('products.show', compact('product'));
     }
 }
