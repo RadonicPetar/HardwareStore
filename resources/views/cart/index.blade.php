@@ -71,7 +71,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="px-4 py-2 text-red-600 hover:underline"
+                                    <button type="submit" class="inline-block mt-4 px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700"
                                         onclick="return confirm('Clear the entire cart?')">
                                         Clear Cart
                                     </button>
