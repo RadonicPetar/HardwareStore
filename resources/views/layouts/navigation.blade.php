@@ -10,6 +10,10 @@
                     </a>
                 </div>
 
+                @php
+                    $cartCount = collect(session('cart', []))->sum('quantity');
+                @endphp
+
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -20,10 +24,6 @@
                         {{ __('Products') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
-                        {{ __('Cart') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                         {{ __('My Orders') }}
                     </x-nav-link>
@@ -32,6 +32,9 @@
                         {{ __('Manage Orders') }}
                     </x-nav-link>
                     @endcan
+                    <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
+                        {{ __('Cart') }} ({{ $cartCount }})
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -87,9 +90,6 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
-                {{ __('Cart') }}
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                 {{ __('My Orders') }}
             </x-responsive-nav-link>
@@ -98,6 +98,9 @@
                 {{ __('Manage Orders') }}
             </x-nav-link>
             @endcan
+            <x-responsive-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.*')">
+                {{ __('Cart') }} ({{ $cartCount }})
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

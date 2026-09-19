@@ -37,7 +37,7 @@
                                         @csrf
                                         @method('PUT')
 
-                                        <input type="number" name="quantity" min="1"
+                                        <input type="number" name="quantity" min="1" max="99"
                                             value="{{ $item['quantity'] }}"
                                             class="w-20 border-gray-300 rounded-md">
 
@@ -65,11 +65,24 @@
                             <p class="text-xl font-semibold">
                                 Total: €{{ number_format($total, 2) }}
                             </p>
+
+                            <div class="mt-4 flex justify-end gap-3">
+                                <form method="POST" action="{{ route('cart.clear') }}">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="px-4 py-2 text-red-600 hover:underline"
+                                        onclick="return confirm('Clear the entire cart?')">
+                                        Clear Cart
+                                    </button>
+                                </form>
+                    
+                                <a href="{{ route('checkout.create') }}"
+                                    class="inline-block mt-4 px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700">
+                                    Checkout
+                                </a>
+                            </div>
                         </div>
-                        <a href="{{ route('checkout.create') }}"
-                            class="inline-block mt-4 px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700">
-                            Checkout
-                        </a>
                     @endif
 
                 </div>

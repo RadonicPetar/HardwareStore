@@ -41,7 +41,7 @@ class CartController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'quantity' => ['required', 'integer', 'min:1'],
+            'quantity' => ['required', 'integer', 'min:1', 'max:99'],
         ]);
 
         $cart = session()->get('cart', []);
@@ -63,5 +63,12 @@ class CartController extends Controller
         session()->put('cart', $cart);
 
         return back()->with('success', 'Product removed from cart.');
+    }
+
+    public function clear()
+    {
+        session()->forget('cart');
+
+        return redirect()->route('cart.index')->with('success', 'Cart cleared.');
     }
 }
